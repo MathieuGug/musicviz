@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { Interval, Note, Scale, Key, Chord, Progression, RomanNumeral, note } from "tonal";
-    import { prettifyRoman, parseChord } from '$src/lib/utils'
+    import { Progression, RomanNumeral } from "tonal";
+    import { prettifyRoman, reverseRoman, parseChord } from '$src/lib/utils'
     export let key: string = "C";
     export let progression: string;
     export let mode: 'roman to chord' | 'chord to roman';
@@ -8,17 +8,30 @@
     
 
     $: if (mode == 'roman to chord') {
-        let chords = Progression.fromRomanNumerals(key, progression.split(' '))
-        let progressionParsed = chords.map(c => parseChord(c))
+        console.log('roman to chord')
+        console.log('input:', progression)
+        
+        let progressionFormatted = progression.split(' ').map(r => reverseRoman(r))
+        console.log('input:', progressionFormatted)
+        let chords = Progression.fromRomanNumerals(key, progressionFormatted)
 
-        console.log('chooords:', chords)
+        let progressionParsed = chords.map(c => parseChord(c))
         progressionConverted = progressionParsed.join(' ')
+
+        console.log('chords:', chords)
+        console.log('output:', progressionConverted)
     } else if (mode == 'chord to roman') {
+        console.log('chord to roman')
+        console.log('input:', progression)
+
         let romans = Progression.toRomanNumerals(key, progression.split(' '))
+
         let progressionParsed = romans.map(c => prettifyRoman(c))
         
-        console.log('romaaans:', romans)
         progressionConverted = progressionParsed.join(' ')
+
+        console.log('chords:', romans)
+        console.log('output:', progressionConverted)
     } else {
         throw 'Type must be in `roman to chord` or `chord to roman`';
     }

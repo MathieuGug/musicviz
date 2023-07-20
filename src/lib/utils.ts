@@ -19,6 +19,28 @@ export function prettifyRoman(r: string): string {
     return name
 }
 
+export function reverseRoman(r: string): string {
+    // transform a pretty string into tonal.js format
+    // ex: ii -> IIm, iio -> IIo...
+    let roman: string = r;
+    let alteration: string = '';
+
+    if (['b', '#'].includes(roman.charAt(0))) {
+        alteration = roman.charAt(0) 
+        roman = roman.slice(1)
+    }
+    
+    if (roman == roman.toLowerCase()) {
+        if (roman.slice(-1) == 'o') {
+            roman = roman.slice(0, -1).toUpperCase() + 'o'
+        } else {
+            roman = alteration + roman.toUpperCase() + 'm'
+        }
+    }
+
+    roman = alteration + roman
+    return roman
+}
 export function parseChord(c: string) {
     
     return c

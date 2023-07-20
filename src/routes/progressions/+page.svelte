@@ -31,7 +31,7 @@
 </script>
 
 <div class="absolute z-100 w-3/5 h-auto transition-all duration-700 delay-200" 
-    style="right: {margins.right}px; top: {margins.top}px; opacity: {visible ? '100%' : '0%'};"
+    style="right: {margins.right}px; top: {margins.top}px; visibility: {visible ? 'visible' : 'hidden'}; opacity: {visible ? '100%' : '0%'};"
     bind:clientHeight={height} bind:clientWidth={popUpWidth}>
     <KeySelector key={key} width={popUpWidth} height={height} {radius} 
         on:update={(event) => {
@@ -77,23 +77,7 @@
                 }} />
         </div>
         <div class="relative h-1/3 flex flex-col text-center gap-2 justify-between ">
-            {#if mode == 'roman to chord'}
-            <div class="min-h-[100px] overflow-y-auto">
-                <Progression 
-                    progressionConverted={progressionRomans}
-                    progression={progressionChords}
-                    {key}
-                    mode={'chord to roman'} />
-            </div>
-        
-            <div class="min-h-[100px] overflow-y-auto">
-                <Progression 
-                    bind:progressionConverted={progressionChords}
-                    progression={progressionRomans}
-                    {key}
-                    mode={'roman to chord'} />
-            </div>
-            {:else if mode == 'chord to roman'}
+            {#if mode == 'chord to roman'}
             <div class="min-h-[100px] overflow-y-auto">
                 <Progression 
                     bind:progressionConverted={progressionRomans}
@@ -101,7 +85,7 @@
                     {key}
                     mode={'chord to roman'} />
             </div>
-            
+        
             <div class="min-h-[100px] overflow-y-auto">
                 <Progression 
                     progressionConverted={progressionChords}
@@ -109,9 +93,26 @@
                     {key}
                     mode={'roman to chord'} />
             </div>
+            {:else if mode == 'roman to chord'}
+            <div class="min-h-[100px] overflow-y-auto">
+                <Progression 
+                    progressionConverted={progressionRomans}
+                    progression={progressionChords}
+                    {key}
+                    mode={'chord to roman'} />
+            </div>
+            
+            <div class="min-h-[100px] overflow-y-auto">
+                <Progression 
+                    bind:progressionConverted={progressionChords}
+                    progression={progressionRomans}
+                    {key}
+                    mode={'roman to chord'} />
+            </div>
             {/if}
             
         </div>
+
 
         <div class="h-1/4  w-full">
             
