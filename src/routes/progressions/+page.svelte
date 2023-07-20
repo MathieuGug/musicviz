@@ -32,11 +32,10 @@
 
 <svelte:head>
     <title>Chords progression converter</title>
+    <meta name="twitter:image:" content="/illustration.png">
+    <meta name="twitter:image:alt" content="Illustration">
+    <meta name="twitter:description" content="Chords Progression Converter">
 </svelte:head>
-
-<div class="w-0 h-0">
-    <img src="/illustration.png" alt="illustration" />
-</div>
 
 <div class="absolute z-100 w-3/5 h-auto transition-all duration-700 delay-200" 
     style="right: {margins.right}px; top: {margins.top}px; visibility: {visible ? 'visible' : 'hidden'}; opacity: {visible ? '100%' : '0%'};"
