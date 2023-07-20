@@ -30,6 +30,10 @@
     let keyTemp: string = ''; // copy of active key to show consequences of highlight. When highlight done, back to keyTemp.
 </script>
 
+<svelte:head>
+    <title>Chords progression converter</title>
+</svelte:head>
+
 <div class="absolute z-100 w-3/5 h-auto transition-all duration-700 delay-200" 
     style="right: {margins.right}px; top: {margins.top}px; visibility: {visible ? 'visible' : 'hidden'}; opacity: {visible ? '100%' : '0%'};"
     bind:clientHeight={height} bind:clientWidth={popUpWidth}>
